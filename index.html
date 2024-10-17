@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contador de Cepillados</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin-top: 50px;
+        }
+        .counter {
+            font-size: 2em;
+            margin: 20px 0;
+        }
+        button {
+            font-size: 1.2em;
+            padding: 10px 20px;
+            margin: 5px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Contador de Cepillados</h1>
+    <div class="counter" id="counter">0</div>
+    <button onclick="increase()">Incrementar</button>
+    <button onclick="reset()">Reiniciar</button>
+
+    <script>
+        // Cargar el valor inicial del contador desde localStorage
+        let count = parseInt(localStorage.getItem('brushCounter')) || 0;
+        const counterElement = document.getElementById('counter');
+        counterElement.textContent = count;
+
+        // Función para incrementar el contador
+        function increase() {
+            if (count < 270) {
+                count++;
+                counterElement.textContent = count;
+                localStorage.setItem('brushCounter', count);
+            }
+        }
+
+        // Función para reiniciar el contador
+        function reset() {
+            count = 0;
+            counterElement.textContent = count;
+            localStorage.setItem('brushCounter', count);
+        }
+    </script>
+</body>
+</html>
