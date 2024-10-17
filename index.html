@@ -23,21 +23,36 @@
 </head>
 <body>
     <h1>Contador de Cepillados</h1>
-    <div class="counter" id="counter">0</div>
+    <div class="counter" id="counter">0 de 270</div>
     <button onclick="increase()">Incrementar</button>
+    <button onclick="decrease()">Quitar 1</button>
     <button onclick="reset()">Reiniciar</button>
 
     <script>
         // Cargar el valor inicial del contador desde localStorage
         let count = parseInt(localStorage.getItem('brushCounter')) || 0;
         const counterElement = document.getElementById('counter');
-        counterElement.textContent = count;
+        updateCounter();
+
+        // Función para actualizar el texto del contador
+        function updateCounter() {
+            counterElement.textContent = `${count} de 270`;
+        }
 
         // Función para incrementar el contador
         function increase() {
             if (count < 270) {
                 count++;
-                counterElement.textContent = count;
+                updateCounter();
+                localStorage.setItem('brushCounter', count);
+            }
+        }
+
+        // Función para decrementar el contador
+        function decrease() {
+            if (count > 0) {
+                count--;
+                updateCounter();
                 localStorage.setItem('brushCounter', count);
             }
         }
@@ -45,7 +60,7 @@
         // Función para reiniciar el contador
         function reset() {
             count = 0;
-            counterElement.textContent = count;
+            updateCounter();
             localStorage.setItem('brushCounter', count);
         }
     </script>
