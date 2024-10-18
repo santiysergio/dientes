@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Contador de Cepillados</title>
+    <title>Contador de Días</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -22,29 +22,29 @@
     </style>
 </head>
 <body>
-    <h1>Contador de Cepillados</h1>
-    <div class="counter" id="counter">0 de 270</div>
+    <h1>Contador de Días</h1>
+    <div class="counter" id="counter">0 de 90 días</div>
     <button onclick="increase()">Incrementar</button>
     <button onclick="decrease()">Quitar 1</button>
     <button onclick="reset()">Reiniciar</button>
 
     <script>
         // Cargar el valor inicial del contador desde localStorage
-        let count = parseInt(localStorage.getItem('brushCounter')) || 0;
+        let count = parseInt(localStorage.getItem('dayCounter')) || 0;
         const counterElement = document.getElementById('counter');
         updateCounter();
 
         // Función para actualizar el texto del contador
         function updateCounter() {
-            counterElement.textContent = `${count} de 270`;
+            counterElement.textContent = `${count} de 90 días`;
         }
 
         // Función para incrementar el contador
         function increase() {
-            if (count < 270) {
+            if (count < 90) {
                 count++;
                 updateCounter();
-                localStorage.setItem('brushCounter', count);
+                localStorage.setItem('dayCounter', count);
             }
         }
 
@@ -53,7 +53,7 @@
             if (count > 0) {
                 count--;
                 updateCounter();
-                localStorage.setItem('brushCounter', count);
+                localStorage.setItem('dayCounter', count);
             }
         }
 
@@ -61,7 +61,7 @@
         function reset() {
             count = 0;
             updateCounter();
-            localStorage.setItem('brushCounter', count);
+            localStorage.setItem('dayCounter', count);
         }
     </script>
 </body>
